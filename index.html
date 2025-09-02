@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TrueTrend Ultimate – Learn Your Money. Earn Your Money. Own Your Money.</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b0f1a;--card:#0f1729;--muted:#9aa3b2;--text:#e5ecf5;--accent:#5eead4;--cta:#10b981}
+  *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:radial-gradient(1200px 800px at 20% -10%,#162036 0%,#0b0f1a 55%);color:var(--text)}
+  .wrap{max-width:1100px;margin:0 auto;padding:40px 16px}
+  header{display:flex;justify-content:space-between;align-items:center}
+  .brand{display:flex;gap:12px;align-items:center}
+  .badge{font-size:12px;color:var(--muted);border:1px solid #1f2a44;border-radius:999px;padding:6px 10px}
+  .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;margin:32px 0 16px}
+  h1{font-weight:800;font-size:42px;line-height:1.1;margin:16px 0}
+  p{color:var(--muted);font-size:18px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid #1f2a44;border-radius:16px;padding:18px}
+  .price{display:flex;gap:12px;margin-top:16px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--cta);color:#05151a;border:0;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none}
+  .cta.alt{background:#0ea5e9;color:#001018}
+  .cta small{opacity:.9}
+  footer{margin:48px 0 16px;text-align:center;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <svg width="30" viewBox="0 0 24 24" fill="none"><path d="M12 2l9 4-9 4-9-4 9-4Zm0 8l9 4-9 4-9-4 9-4Zm0 8l9 4-9 4-9-4 9-4Z" fill="#5eead4"/></svg>
+        <strong>TrueTrend Ultimate</strong>
+      </div>
+      <span class="badge">Early Beta • Instant Access</span>
+    </header>
+
+    <section class="hero card">
+      <div>
+        <h1>Learn Your Money. Earn Your Money. <span style="color:var(--accent)">Own Your Money.</span></h1>
+        <p>Get the smarter trading assistant: strategy router, instant analysis, and clean signals right from your browser.</p>
+
+        <div class="price">
+          <a class="cta" href="https://buy.stripe.com/28EaEX7QhdHS0MJdcO38405" target="_blank" rel="noopener">
+            <span>Get Started – $59.99</span>
+            <small>Monthly</small>
+          </a>
+          <a class="cta alt" href="https://buy.stripe.com/dRmeVdeeF6fq0MJ7Su38407" target="_blank" rel="noopener">
+            <span>Best Value – $599.99</span>
+            <small>Yearly</small>
+          </a>
+        </div>
+        <p style="font-size:14px;margin-top:12px">After purchase you’ll be redirected to instructions and the download link.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 12px">What you get</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.6">
+          <li>Strategy selector (EMA, ORB, BOS, options & more)</li>
+          <li>Auto-Analyze on click</li>
+          <li>Clean UI, beginner → pro modes</li>
+          <li>Voice alerts + compact dock</li>
+          <li>Works on TradingView, PocketOption, more</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>© <span id="y"></span> TrueTrend. All rights reserved.</footer>
+  </div>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
