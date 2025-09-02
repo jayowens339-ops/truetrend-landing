@@ -28,7 +28,13 @@
       --success:#2fd07f;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 700px at 80% -20%,rgba(124,92,255,.07),transparent 50%), radial-gradient(900px 420px at 10% -10%,rgba(0,208,255,.06),transparent 60%),var(--bg); color:var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;}
+    html,body{margin:0;padding:0;background:
+      radial-gradient(1200px 700px at 80% -20%,rgba(124,92,255,.07),transparent 50%),
+      radial-gradient(900px 420px at 10% -10%,rgba(0,208,255,.06),transparent 60%),
+      var(--bg);
+      color:var(--text);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
     a{color:#c6d3ff;text-decoration:none}
     a:hover{text-decoration:underline}
 
@@ -42,7 +48,7 @@
     .nav a{color:var(--muted);font-weight:500}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text);font-weight:600}
     .btn:hover{background:rgba(170,185,220,.08)}
-    .btn.primary{background:linear-gradient( 90deg, var(--brand-2), var(--brand)); border-color:transparent; box-shadow:0 12px 28px rgba(124,92,255,.22)}
+    .btn.primary{background:linear-gradient(90deg, var(--brand-2), var(--brand)); border-color:transparent; box-shadow:0 12px 28px rgba(124,92,255,.22)}
     .btn.primary:hover{filter:brightness(1.05)}
     .btn.small{padding:8px 12px;border-radius:10px;font-size:.92rem}
 
@@ -95,7 +101,7 @@
     .quote{font-size:.98rem; line-height:1.6}
     .who{margin-top:8px; font-weight:700}
 
-    /* Banner (dismissible) */
+    /* Risk banner (dismissible) */
     .risk-banner{
       --bg:#0e1426; --border:rgba(170,185,220,.25);
       position:sticky; top:0; z-index:1000;
@@ -132,7 +138,7 @@
     <div class="container" style="display:flex;gap:16px;align-items:center">
       <p><strong>Not financial advice:</strong> TrueTrend is for education only. Trading involves significant risk.
         <strong>Don’t trade with money you can’t afford to lose.</strong>
-        <a href="#disclaimer" class="rb-link">Read disclaimer</a>
+        <a href="/privacy" class="rb-link">Read privacy policy</a>
       </p>
       <button type="button" class="rb-close" aria-label="Dismiss risk warning">✕</button>
     </div>
@@ -145,7 +151,8 @@
       <nav class="spacer">
         <a href="#features">Features</a>&nbsp;&nbsp;·&nbsp;&nbsp;
         <a href="#pricing">Pricing</a>&nbsp;&nbsp;·&nbsp;&nbsp;
-        <a href="#testimonials">Testimonials</a>
+        <a href="#testimonials">Testimonials</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="/privacy">Privacy</a>
       </nav>
       <a class="btn small" href="#video">Watch demo</a>
       <a class="btn primary small" href="#" onclick="alert('Chrome Store pending approval.');return false;">Get Extension</a>
@@ -293,7 +300,7 @@
       Markets involve risk and losses can exceed deposits. <strong>Do not trade with money you cannot afford to lose.</strong>
       Past performance is not indicative of future results. You are solely responsible for your decisions.
       <a href="#" class="risk-link" onclick="alert('Add your Terms URL.');return false;">Terms</a> ·
-      <a href="#" class="risk-link" onclick="alert('Add your Privacy URL.');return false;">Privacy</a>
+      <a href="/privacy" class="risk-link">Privacy</a>
     </div>
   </footer>
 
@@ -301,7 +308,7 @@
   <footer class="site">
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px">
       <div>© <span id="year"></span> TrueTrend. All rights reserved.</div>
-      <div><a href="#pricing">Pricing</a> &nbsp;·&nbsp; <a href="#features">Features</a> &nbsp;·&nbsp; <a href="#testimonials">Testimonials</a></div>
+      <div><a href="#pricing">Pricing</a> &nbsp;·&nbsp; <a href="#features">Features</a> &nbsp;·&nbsp; <a href="#testimonials">Testimonials</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a></div>
     </div>
   </footer>
 
