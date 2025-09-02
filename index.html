@@ -80,10 +80,11 @@
 
     /* Pricing */
     .pricing{display:grid; gap:20px}
-    @media(min-width:860px){ .pricing{grid-template-columns:1fr 1fr 1fr} }
+    @media(min-width:860px){ .pricing{grid-template-columns:1fr 1fr} } /* two plans */
     .price{border:1px solid var(--border); border-radius:20px; background:linear-gradient(140deg, rgba(124,92,255,.10), rgba(15,22,43,.9) 30%); padding:22px; display:flex;flex-direction:column; gap:14px }
     .price h3{margin:0;font-size:1.25rem}
     .amount{font-size:2.1rem;font-weight:800}
+    .per{color:var(--muted); font-weight:600; font-size:.95rem; margin-left:6px}
     .buy{margin-top:auto}
     .badge{display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:10px; font-size:.8rem; color:#dfe8ff; background:rgba(170,185,220,.06)}
     .featured{outline:2px solid rgba(124,92,255,.35); box-shadow:0 18px 60px rgba(124,92,255,.18)}
@@ -173,7 +174,7 @@
 
       <div id="video" class="hero-card">
         <div class="hero-media">
-          <!-- Replace with your YT ID -->
+          <!-- Replace with your YT ID if needed -->
           <lite-youtube videoid="GUhfVOJF0kA" params="rel=0&modestbranding=1"></lite-youtube>
         </div>
         <div class="pill-row">
@@ -217,54 +218,46 @@
   <section id="pricing">
     <div class="container">
       <h2 class="section-title">Simple, transparent pricing</h2>
-      <p class="section-sub">No hidden fees. One-time purchase options. Chrome extension delivery.</p>
+      <p class="section-sub">No hidden fees. Choose Monthly or Yearly. Chrome extension delivery.</p>
 
       <div class="pricing">
+        <!-- MONTHLY -->
         <div class="price">
-          <span class="badge">Starter</span>
-          <h3>TrueTrend Starter</h3>
-          <div class="amount">$59.99</div>
-          <p class="muted">Core router strategies, beginner mode, and basic voice alerts.</p>
+          <span class="badge">Monthly</span>
+          <h3>TrueTrend Monthly</h3>
+          <div class="amount">
+            $59.99 <span class="per">/month</span>
+          </div>
+          <p class="muted">Billed monthly. Cancel anytime. Core router strategies, beginner mode, and basic voice alerts.</p>
           <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
             <li>EMA/ATR + ORB/BOS router</li>
             <li>Beginner presets</li>
             <li>Lightweight alerts</li>
           </ul>
           <div class="buy">
-            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/28EaEX7QhdHS0MJdcO38405">Buy Starter</a>
+            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/28EaEX7QhdHS0MJdcO38405">Subscribe Monthly</a>
           </div>
         </div>
 
+        <!-- YEARLY -->
         <div class="price featured">
-          <span class="badge">Pro</span>
-          <h3>TrueTrend Pro</h3>
-          <div class="amount">$199.99</div>
-          <p class="muted">All Starter features + enhanced routing, voice packs, and deeper configuration.</p>
-          <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
-            <li>Expanded analyzers & routing</li>
-            <li>Advanced voice & visual feedback</li>
-            <li>Priority updates</li>
-          </ul>
-          <div class="buy">
-            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/28EaEX7QhdHS0MJdcO38405">Buy Pro</a>
+          <span class="badge">Yearly</span>
+          <h3>TrueTrend Yearly</h3>
+          <div class="amount">
+            $599.99 <span class="per">/year</span>
           </div>
-        </div>
-
-        <div class="price">
-          <span class="badge">Elite</span>
-          <h3>TrueTrend Elite</h3>
-          <div class="amount">$599.99</div>
-          <p class="muted">Everything in Pro plus priority support, strategy consults, and roadmap input.</p>
+          <p class="muted">Best value — roughly 2 months free vs monthly. Everything in Monthly plus priority support access.</p>
           <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
-            <li>1:1 onboarding consult</li>
+            <li>Everything in Monthly</li>
             <li>Priority support access</li>
-            <li>Feature requests considered</li>
+            <li>Early feature access when available</li>
           </ul>
           <div class="buy">
-            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/dRmeVdeeF6fq0MJ7Su38407">Buy Elite</a>
+            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/dRmeVdeeF6fq0MJ7Su38407">Subscribe Yearly</a>
           </div>
         </div>
       </div>
+
       <p class="muted" style="margin-top:12px">After checkout, you’ll receive instructions and the extension package. If your Chrome Web Store listing is pending, we provide a direct install flow until approval.</p>
     </div>
   </section>
