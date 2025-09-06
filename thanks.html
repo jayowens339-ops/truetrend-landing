@@ -3,42 +3,86 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Thanks! – TrueTrend</title>
+<title>Thanks & Install – TrueTrend</title>
 <style>
   body {
     margin:0;
     font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
     background:#0b0f1a;
     color:#e5ecf5;
-    display:grid;
-    place-items:center;
-    height:100vh
+    line-height:1.6;
+  }
+  .wrapper {
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
   }
   .box {
-    max-width:720px;
     background:rgba(255,255,255,.03);
     border:1px solid #1f2a44;
     border-radius:16px;
-    padding:24px
+    padding:24px;
+    margin-bottom:24px;
   }
-  a { color:#5eead4 }
+  h1 { margin-top:0 }
+  a { color:#5eead4; }
+  .cta {
+    display:inline-block;
+    background:#00a878;
+    color:#041811;
+    padding:14px 18px;
+    border-radius:12px;
+    font-weight:700;
+    text-decoration:none;
+    margin-top:16px;
+  }
+  code,kbd {
+    background:#0b1220;
+    border:1px solid #1f2a3a;
+    border-radius:6px;
+    padding:2px 6px;
+  }
 </style>
 </head>
 <body>
-  <div class="box">
-    <h1>You're in! 🎉</h1>
-    <p>Check your email for your receipt and a link to the setup guide. 
-       If you’re not automatically redirected, 
-       <a href="/">return to the homepage</a>.</p>
-    <p>Need help? Email support@trytruetrend.com</p>
+  <div class="wrapper">
+    <!-- Thank You message -->
+    <div class="box">
+      <h1>You're in! 🎉</h1>
+      <p>Check your email for your receipt and a link to the setup guide. 
+         If you need, <a href="/">return to the homepage</a>.</p>
+      <p>Need help? Email support@trytruetrend.com</p>
+    </div>
+
+    <!-- Installer section -->
+    <div class="box">
+      <h2>Install TrueTrend Universal (v4.3.3.5)</h2>
+      <p>Click below to download the extension ZIP, then load it in Chrome/Edge/Brave Developer mode.</p>
+      <a id="install" class="cta" href="#" download="TrueTrend_CWS_Upload_v4.3.3.5.zip">⬇ Install TrueTrend</a>
+
+      <h3>Manual Install Steps</h3>
+      <ol>
+        <li>Click <strong>Install TrueTrend</strong> above to download the ZIP.</li>
+        <li>Unzip the file on your computer.</li>
+        <li>Open <code>chrome://extensions/</code> (or <code>edge://extensions/</code>).</li>
+        <li>Enable <strong>Developer mode</strong> (top-right toggle).</li>
+        <li>Click <strong>Load unpacked</strong> and select the unzipped folder.</li>
+      </ol>
+    </div>
   </div>
 
-  <!-- Auto-redirect after 1.5s to installer page -->
   <script>
-    setTimeout(function(){
-      window.location.href = "https://www.trytruetrend.com/install"; 
-      // update the path if your installer lives elsewhere
-    }, 1500);
+    (function(){
+      // embedded ZIP file (the actual v4.3.3.5 you uploaded)
+      const b64 = "EMBEDDED_BASE64_ZIP_HERE";
+      const byteChars = atob(b64);
+      const bytes = new Uint8Array(byteChars.length);
+      for (let i=0;i<byteChars.length;i++) bytes[i] = byteChars.charCodeAt(i);
+      const blob = new Blob([bytes], { type: "application/zip" });
+      const url = URL.createObjectURL(blob);
+      const a = document.getElementById('install');
+      a.href = url;
+    })();
   </script>
 </body>
 </html>
