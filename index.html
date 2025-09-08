@@ -26,6 +26,7 @@
       --border:rgba(170,185,220,.16);
       --glow:rgba(124,92,255,.35);
       --success:#2fd07f;
+      --trial:#ffd36b;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:
@@ -83,17 +84,19 @@
     .bullet{display:flex;align-items:center;gap:10px}
     .bullet .dot{width:10px;height:10px;border-radius:50%;background:conic-gradient(from 180deg,var(--brand),var(--brand-2))}
     .ok{color:var(--success)}
+    .note{font-size:.9rem;color:#cfe0ff;background:rgba(127,122,255,.12);border:1px solid rgba(170,185,220,.2);padding:8px 12px;border-radius:10px;display:inline-block;margin-top:6px}
 
     /* Pricing */
     .pricing{display:grid; gap:20px}
     @media(min-width:860px){ .pricing{grid-template-columns:1fr 1fr} } /* two plans */
-    .price{border:1px solid var(--border); border-radius:20px; background:linear-gradient(140deg, rgba(124,92,255,.10), rgba(15,22,43,.9) 30%); padding:22px; display:flex;flex-direction:column; gap:14px }
+    .price{position:relative;border:1px solid var(--border); border-radius:20px; background:linear-gradient(140deg, rgba(124,92,255,.10), rgba(15,22,43,.9) 30%); padding:22px; display:flex;flex-direction:column; gap:14px }
     .price h3{margin:0;font-size:1.25rem}
     .amount{font-size:2.1rem;font-weight:800}
     .per{color:var(--muted); font-weight:600; font-size:.95rem; margin-left:6px}
     .buy{margin-top:auto}
     .badge{display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:10px; font-size:.8rem; color:#dfe8ff; background:rgba(170,185,220,.06)}
     .featured{outline:2px solid rgba(124,92,255,.35); box-shadow:0 18px 60px rgba(124,92,255,.18)}
+    .trial{position:absolute; top:14px; right:14px; background:linear-gradient(90deg,#ffea9c,#ffd36b); color:#1a1733; font-weight:800; border-radius:999px; padding:6px 10px; border:1px solid #ffffff55}
 
     /* Testimonials */
     .ts{display:grid; gap:18px}
@@ -155,7 +158,7 @@
         <a href="/privacy">Privacy</a>
       </nav>
       <a class="btn small" href="#video">Watch demo</a>
-      <!-- Removed Chrome Store button entirely -->
+      <!-- Chrome Store button removed -->
     </div>
   </header>
 
@@ -181,7 +184,6 @@
 
       <div id="video" class="hero-card">
         <div class="hero-media">
-          <!-- Replace with your YT ID if needed -->
           <lite-youtube videoid="GUhfVOJF0kA" params="rel=0&modestbranding=1"></lite-youtube>
         </div>
         <div class="pill-row">
@@ -225,49 +227,50 @@
   <section id="pricing">
     <div class="container">
       <h2 class="section-title">Simple, transparent pricing</h2>
-      <p class="section-sub">No hidden fees. Choose Monthly or Yearly. Direct install after purchase.</p>
+      <p class="section-sub">No hidden fees. Choose Monthly (with <strong>3-day free trial</strong>) or Yearly. Direct install after purchase.</p>
 
-      <div class="pricing">
-        <!-- MONTHLY -->
-        <div class="price">
-          <span class="badge">Monthly</span>
-          <h3>TrueTrend Monthly</h3>
-          <div class="amount">
-            $59.99 <span class="per">/month</span>
-          </div>
-          <p class="muted">Billed monthly. Cancel anytime. Core router strategies, beginner mode, and basic voice alerts.</p>
-          <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
-            <li>EMA/ATR + ORB/BOS router</li>
-            <li>Beginner presets</li>
-            <li>Lightweight alerts</li>
-          </ul>
-          <div class="buy">
-            <!-- Goes directly to your sales/checkout page -->
-            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/28EaEX7QhdHS0MJdcO38405">Subscribe Monthly</a>
-          </div>
+    <div class="pricing">
+      <!-- MONTHLY with 3-day trial -->
+      <div class="price">
+        <span class="badge">Monthly</span>
+        <span class="trial">3-Day Free Trial</span>
+        <h3>TrueTrend Monthly</h3>
+        <div class="amount">
+          $59.99 <span class="per">/month</span>
         </div>
-
-        <!-- YEARLY -->
-        <div class="price featured">
-          <span class="badge">Yearly</span>
-          <h3>TrueTrend Yearly</h3>
-          <div class="amount">
-            $599.99 <span class="per">/year</span>
-          </div>
-          <p class="muted">Best value — roughly 2 months free vs monthly. Everything in Monthly plus priority support access.</p>
-          <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
-            <li>Everything in Monthly</li>
-            <li>Priority support access</li>
-            <li>Early feature access when available</li>
-          </ul>
-          <div class="buy">
-            <!-- Goes directly to your sales/checkout page -->
-            <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/dRmeVdeeF6fq0MJ7Su38407">Subscribe Yearly</a>
-          </div>
+        <p class="muted">Start your 3-day free trial, then $59.99/month. Cancel anytime during the trial to avoid being charged.</p>
+        <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
+          <li>EMA/ATR + ORB/BOS router</li>
+          <li>Beginner presets</li>
+          <li>Lightweight alerts</li>
+        </ul>
+        <div class="buy">
+          <!-- Your Stripe Checkout link that should point to a Price with a 3-day trial configured in Stripe -->
+          <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/fZueVd0nPgU4dzvfkW38401">Start 3-Day Free Trial</a>
         </div>
       </div>
 
-      <p class="muted" style="margin-top:12px">After checkout, you’ll receive direct installation instructions and the extension package.</p>
+      <!-- YEARLY (existing link) -->
+      <div class="price featured">
+        <span class="badge">Yearly</span>
+        <h3>TrueTrend Yearly</h3>
+        <div class="amount">
+          $599.99 <span class="per">/year</span>
+        </div>
+        <p class="muted">Best value — roughly 2 months free vs monthly. Everything in Monthly plus priority support access.</p>
+        <ul class="muted" style="margin:0 0 10px 18px;line-height:1.6">
+          <li>Everything in Monthly</li>
+          <li>Priority support access</li>
+          <li>Early feature access when available</li>
+        </ul>
+        <div class="buy">
+          <a class="btn primary" target="_blank" rel="noopener" href="https://buy.stripe.com/dRmeVdeeF6fq0MJ7Su38407">Subscribe Yearly</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Note: Free trials are configured in Stripe on the <em>Price</em> itself. If Checkout doesn’t show “trial,” edit the Monthly price in Stripe and set <strong>Trial period = 3 days</strong>.</p>
+    <p class="muted" style="margin-top:12px">After checkout, you’ll receive direct installation instructions and the extension package.</p>
     </div>
   </section>
 
