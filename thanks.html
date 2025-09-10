@@ -1,163 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Thanks for your purchase — TrueTrend</title>
-  <meta name="theme-color" content="#0c1324"/>
-  <meta name="robots" content="noindex, nofollow"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thank You — TrueTrend</title>
   <style>
-    :root{
-      --bg:#0b1221; --panel:#0f162b; --muted:#a3b3d6; --text:#eaf1ff;
-      --brand:#7c5cff; --brand-2:#5860ff; --accent:#00d0ff;
-      --border:rgba(170,185,220,.16); --glow:rgba(124,92,255,.35);
-      --ok:#2fd07f; --warn:#ffd36b;
-    }
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;background:
-        radial-gradient(1100px 600px at 78% -10%, rgba(124,92,255,.07), transparent 55%),
-        radial-gradient(900px 420px at 10% -10%, rgba(0,208,255,.06), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    .wrap{max-width:900px;margin:0 auto;padding:28px 18px 60px}
-    header{display:flex;align-items:center;gap:12px;padding:6px 0 18px;border-bottom:1px solid var(--border)}
-    .dot{width:12px;height:12px;border-radius:50%;background:conic-gradient(from 180deg,var(--brand),var(--brand-2));box-shadow:0 0 22px var(--glow)}
-    h1{margin:.6rem 0 .4rem;font-size:clamp(28px,4.6vw,40px)}
-    .muted{color:var(--muted)}
-    .card{
-      margin-top:18px;border:1px solid var(--border);border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-      padding:18px
-    }
-    .success{
-      display:flex;align-items:center;gap:10px;font-weight:700;
-      color:#dff9eb;background:rgba(47,208,127,.12);
-      border:1px solid rgba(47,208,127,.35); padding:10px 12px; border-radius:12px
-    }
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;justify-content:center;
-      padding:12px 16px;border:1px solid var(--border);border-radius:14px;
-      background:linear-gradient(90deg,var(--brand-2),var(--brand));
-      color:#fff;font-weight:800;text-decoration:none; box-shadow:0 12px 28px rgba(124,92,255,.22)
-    }
-    .btn:hover{filter:brightness(1.05)}
-    .row{display:grid;gap:16px}
-    @media(min-width:900px){ .row{grid-template-columns:1.2fr .8fr} }
-    ul{margin:12px 0 0 18px; line-height:1.7}
-    code{background:#0f1833;border:1px solid var(--border);padding:2px 6px;border-radius:6px}
-    .mini{font-size:.92rem;color:#cfe0ff}
-    .pill{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:rgba(170,185,220,.08);font-size:.8rem;margin-right:8px}
-    .foot{margin-top:22px;font-size:.9rem;color:var(--muted)}
-    .hr{height:1px;background:var(--border); margin:18px 0}
-    .cta-stack{display:flex;gap:12px;flex-wrap:wrap}
-    a{color:#cfe0ff}
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; max-width: 720px; margin: 40px auto; padding: 24px; }
+    a.btn { display:inline-block; margin-top:16px; padding:12px 18px; border-radius:10px; background:#16a34a; color:#fff; text-decoration:none; font-weight:600; }
+    .muted { font-size:14px; opacity:.8; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="dot" aria-hidden="true"></div>
-      <div><strong>TrueTrend</strong> <span class="muted">Thank you</span></div>
-    </header>
-
-    <h1>Payment confirmed — your download is ready 🎉</h1>
-    <p class="muted">We also sent a receipt to your email. If you don’t see it, check spam/promotions.</p>
-
-    <div class="card">
-      <div class="success">✅ Success: Access granted</div>
-      <p style="margin:12px 0 0">Your purchase: <span id="plan" class="pill">Plan</span> <span id="email" class="pill" hidden></span></p>
-      <div class="hr"></div>
-
-      <div class="row">
-        <!-- LEFT: Download + instructions -->
-        <div>
-          <h2 style="margin:.2rem 0 10px">Download TrueTrend Extension</h2>
-          <div class="cta-stack">
-            <!-- CHANGE THIS HREF to your actual ZIP path -->
-            <a id="downloadBtn" class="btn" href="/downloads/TrueTrend_Universal.zip" download>⬇️ Download ZIP</a>
-            <a class="btn" style="background:linear-gradient(90deg,#00b2ff,#00d0ff)" href="/privacy">Privacy</a>
-          </div>
-          <p class="mini" style="margin-top:10px">If the download didn’t start, click the button above. Keep the ZIP intact for install steps below.</p>
-
-          <h3 style="margin:18px 0 8px">Install (Chrome)</h3>
-          <ol class="mini" style="line-height:1.8;margin:0;padding-left:18px">
-            <li>Unzip the file to a folder on your computer.</li>
-            <li>Open <code>chrome://extensions</code>.</li>
-            <li>Turn on <strong>Developer mode</strong> (top-right).</li>
-            <li>Click <strong>Load unpacked</strong> → select the unzipped folder.</li>
-            <li>Pin TrueTrend from the puzzle icon to keep it handy.</li>
-          </ol>
-
-          <h3 style="margin:18px 0 8px">What’s included</h3>
-          <ul>
-            <li>Router strategies (EMA/ATR + ORB/BOS)</li>
-            <li>Beginner mode + voice alerts</li>
-            <li>Timeframes: 1m, 5m, 15m, 30m, 1h, 4h, Daily, Monthly</li>
-          </ul>
-        </div>
-
-        <!-- RIGHT: Help + next steps -->
-        <div>
-          <h3 style="margin:.2rem 0 8px">Next steps</h3>
-          <ul>
-            <li>Open your preferred chart platform, then click the TrueTrend icon.</li>
-            <li>Choose a strategy from the Strategy selector — it will auto-analyze.</li>
-            <li>Adjust timeframe pills to suit your session.</li>
-          </ul>
-
-          <h3 style="margin:16px 0 8px">Need help?</h3>
-          <p class="mini">Email <a href="mailto:support@trytruetrend.com">support@trytruetrend.com</a> with your order email. We’ll get you sorted.</p>
-
-          <h3 style="margin:16px 0 8px">Billing</h3>
-          <p class="mini">Manage or cancel your subscription via your Stripe receipt. Monthly includes a 3-day free trial if you subscribed on that plan.</p>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-      <p class="foot"><strong>Risk warning:</strong> Educational use only — not financial advice. Trading involves significant risk. Don’t trade with money you can’t afford to lose.</p>
-    </div>
-
-    <p class="foot" style="text-align:center;margin-top:18px">© <span id="y"></span> TrueTrend. All rights reserved.</p>
-  </div>
+  <h1>✅ Payment Complete — Thank You!</h1>
+  <p id="status">Validating your purchase…</p>
+  <p><a id="dl" class="btn" href="#" style="display:none">⬇️ Download Installer (.zip)</a></p>
+  <p class="muted">The link expires in ~30 minutes. We also emailed you a copy.</p>
 
   <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    async function run() {
+      const params = new URLSearchParams(location.search);
+      const session_id = params.get('session_id');
+      if (!session_id) {
+        document.getElementById('status').textContent = 'Missing session_id.';
+        return;
+      }
 
-    // Read query hints from Stripe redirect (optional)
-    const params = new URLSearchParams(location.search);
-    const plan = (params.get('plan') || '').toLowerCase();
-    const emailHint = params.get('email') || '';
-    const planBadge = document.getElementById('plan');
-    const emailBadge = document.getElementById('email');
-
-    if (plan === 'monthly') planBadge.textContent = 'Monthly';
-    else if (plan === 'yearly') planBadge.textContent = 'Yearly';
-    else planBadge.textContent = 'TrueTrend';
-
-    if (emailHint) { emailBadge.textContent = emailHint; emailBadge.hidden = false; }
-
-    // Auto-start download once (polite delay)
-    const zipURL = "/downloads/TrueTrend_Universal.zip"; // <-- update if you name it differently
-    const already = sessionStorage.getItem("tt_downloaded");
-    if (!already) {
-      setTimeout(() => {
-        const a = document.createElement('a');
-        a.href = zipURL;
-        a.download = "";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        sessionStorage.setItem("tt_downloaded","1");
-      }, 900);
+      try {
+        const r = await fetch('/api/make-download-token', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ session_id })
+        });
+        const data = await r.json();
+        if (data.token) {
+          const href = '/api/download?token=' + encodeURIComponent(data.token);
+          const a = document.getElementById('dl');
+          a.href = href;
+          a.style.display = 'inline-block';
+          document.getElementById('status').textContent = 'Payment verified. Ready to install.';
+        } else {
+          document.getElementById('status').textContent = data.error || 'Could not prepare download.';
+        }
+      } catch(e) {
+        document.getElementById('status').textContent = 'Server error preparing download.';
+      }
     }
-
-    // Also keep the main button in sync with the URL above
-    document.getElementById('downloadBtn').setAttribute('href', zipURL);
+    run();
   </script>
 </body>
 </html>
