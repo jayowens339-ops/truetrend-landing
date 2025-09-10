@@ -1,0 +1,11 @@
+{
+  "name": "truetrend-landing",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "stripe": "^14.0.0",
+    "resend": "^2.0.0",
+    "@aws-sdk/client-s3": "^3.593.0",
+    "@aws-sdk/s3-request-presigner": "^3.593.0"
+  }
+}
