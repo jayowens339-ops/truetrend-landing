@@ -1,87 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TrueTrend</title>
-  <style>
-    :root { --bg:#0b0f1a; --panel:#111526; --text:#e6eaff; --muted:#9aa4c9; --brand:#1a5cff; --line:#232846; }
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,Segoe UI,Roboto,Arial}
-    .wrap{max-width:900px;margin:4rem auto;padding:2rem}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px}
-    h1{margin:0 0 .5rem 0;font-size:clamp(22px,4vw,32px)}
-    h2{margin:.5rem 0 1rem 0;font-size:clamp(18px,3vw,24px);color:var(--muted)}
-    p{margin:.4rem 0 .9rem 0}
-    a.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:700}
-    .muted{color:var(--muted)}
-    .sp{height:10px}
-    .center{text-align:center}
-    .hide{display:none}
-    .footer {margin-top:2rem;color:var(--muted);font-size:14px}
-    code{padding:.1rem .35rem;background:#0c1324;border-radius:6px}
-  </style>
+<meta charset="utf-8">
+<title>TrueTrend Ultimate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--brand:#0c1324;}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:#222;background:#fff}
+.wrap{max-width:820px;margin:48px auto;padding:0 24px}
+h1{font-size:32px;margin:0 0 8px}
+.muted{color:#666}
+.btn{display:inline-block;background:#16a34a;color:#fff;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:600}
+.btn:hover{filter:brightness(0.95)}
+.card{border:1px solid #eee;border-radius:16px;padding:20px;margin-top:24px;box-shadow:0 5px 18px rgba(16,24,40,.04)}
+.hidden{display:none}
+</style>
 </head>
 <body>
-  <div class="wrap">
-
-    <!-- LANDING (shown by default) -->
-    <section id="landing" class="card">
-      <h1>TrueTrend — Learn • Earn • Own</h1>
-      <h2 class="muted">Router-based trading assistant for clarity & consistency.</h2>
-      <p>Click the button below to purchase. After payment you’ll be redirected back here and your installer will download automatically.</p>
-      <!-- TODO: paste your real Stripe Payment Link URL below -->
-      <p class="sp"></p>
-      <a class="btn" id="pay" href="https://buy.stripe.com/your_payment_link_here" target="_blank" rel="noopener">Buy with Stripe</a>
-      <div class="footer">
-        <p>After payment redirect URL: <code>?thanks=1</code></p>
-        <p class="muted">If you need a health check, open <code>/health.txt</code> (optional).</p>
-      </div>
-    </section>
-
-    <!-- THANK-YOU / DOWNLOAD (shown when ?thanks=1 or ?session_id=) -->
-    <section id="thanks" class="card hide">
-      <h1>✅ Thanks for your purchase!</h1>
-      <p>Your download should start automatically. If it doesn’t, click the button below.</p>
-      <p class="sp"></p>
-      <p><a class="btn" id="dl" href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip">Download now</a></p>
-      <p class="muted">Tip: if the browser blocks the download, allow it and click the button again.</p>
-      <div class="footer">Need help? Contact support@trytruetrend.com.</div>
-    </section>
-
+<div class="wrap">
+  <div id="landing">
+    <h1>TrueTrend Ultimate</h1>
+    <p class="muted">Router-based trading assistant for clarity & consistency.</p>
+    <div class="card">
+      <p>Click the button to subscribe. After payment you’ll be redirected back here and your installer will download automatically.</p>
+      <a class="btn" href="REPLACE_WITH_YOUR_STRIPE_PAYMENT_LINK">Subscribe with Stripe</a>
+    </div>
   </div>
 
-  <script>
-    // ===== CONFIG you can change =====
-    const DOWNLOAD_URL = "/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip";
-    // ===== nothing below here needs changing =====
+  <div id="thanks" class="hidden">
+    <h1>Thank you — you’re all set!</h1>
+    <p class="muted">Your download should start automatically. If it doesn’t, use the button below.</p>
+    <div class="card">
+      <a id="manual" class="btn" href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip" download>Download the Installer</a>
+      <p class="muted" style="margin-top:12px">If it doesn’t start, right-click → “Save link as…”.</p>
+    </div>
+  </div>
+</div>
 
-    const params = new URLSearchParams(location.search);
-    const isThanks = params.has("thanks") || params.has("session_id");
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const isThanks = params.has('thanks');     // we’ll redirect back with ?thanks=1
+  const landing = document.getElementById('landing');
+  const thanks  = document.getElementById('thanks');
+  const file = '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip';
 
-    const landing = document.getElementById("landing");
-    const thanks  = document.getElementById("thanks");
-    const dlBtn   = document.getElementById("dl");
-
-    dlBtn.href = DOWNLOAD_URL;
-
-    if (isThanks) {
-      landing.classList.add("hide");
-      thanks.classList.remove("hide");
-
-      // Auto-start the download with a tiny delay (gives the page time to paint)
-      setTimeout(() => {
-        try {
-          const a = document.createElement("a");
-          a.href = DOWNLOAD_URL;
-          a.download = "";
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } catch(_) {
-          // ignore; user can click the visible button
-        }
-      }, 700);
-    }
-  </script>
+  if (isThanks) {
+    landing.classList.add('hidden');
+    thanks.classList.remove('hidden');
+    setTimeout(() => { window.location.href = file; }, 400);  // auto-download
+  } else {
+    landing.classList.remove('hidden');
+    thanks.classList.add('hidden');
+  }
+})();
+</script>
 </body>
 </html>
