@@ -1,51 +1,25 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Thank You — TrueTrend</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; max-width: 720px; margin: 40px auto; padding: 24px; }
-    a.btn { display:inline-block; margin-top:16px; padding:12px 18px; border-radius:10px; background:#16a34a; color:#fff; text-decoration:none; font-weight:600; }
-    .muted { font-size:14px; opacity:.8; }
+    body{margin:0;font:16px/1.6 system-ui,Segoe UI,Roboto,Arial;background:#0b0f1a;color:#e6eaff}
+    .wrap{max-width:740px;margin:8vh auto;padding:28px;background:#111526;border:1px solid #232846;border-radius:16px}
+    .muted{color:#a2a9c9}
+    a.btn{display:inline-block;padding:12px 18px;border-radius:10px;color:#fff;background:#0c1324;text-decoration:none;font-weight:700}
   </style>
 </head>
 <body>
-  <h1>✅ Payment Complete — Thank You!</h1>
-  <p id="status">Validating your purchase…</p>
-  <p><a id="dl" class="btn" href="#" style="display:none">⬇️ Download Installer (.zip)</a></p>
-  <p class="muted">The link expires in ~30 minutes. We also emailed you a copy.</p>
-
+  <div class="wrap">
+    <h1>✅ Thanks for your purchase!</h1>
+    <p>Your download should start automatically.</p>
+    <p><a class="btn" id="dl" href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip">Download now</a></p>
+    <p class="muted">If it doesn’t start, click the button above.</p>
+  </div>
   <script>
-    async function run() {
-      const params = new URLSearchParams(location.search);
-      const session_id = params.get('session_id');
-      if (!session_id) {
-        document.getElementById('status').textContent = 'Missing session_id.';
-        return;
-      }
-
-      try {
-        const r = await fetch('/api/make-download-token', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ session_id })
-        });
-        const data = await r.json();
-        if (data.token) {
-          const href = '/api/download?token=' + encodeURIComponent(data.token);
-          const a = document.getElementById('dl');
-          a.href = href;
-          a.style.display = 'inline-block';
-          document.getElementById('status').textContent = 'Payment verified. Ready to install.';
-        } else {
-          document.getElementById('status').textContent = data.error || 'Could not prepare download.';
-        }
-      } catch(e) {
-        document.getElementById('status').textContent = 'Server error preparing download.';
-      }
-    }
-    run();
+    setTimeout(()=>location.href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip",800);
   </script>
 </body>
 </html>
