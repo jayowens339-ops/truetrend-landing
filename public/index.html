@@ -1,111 +1,87 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Privacy Policy — TrueTrend</title>
-  <meta name="description" content="TrueTrend Privacy Policy"/>
-  <meta name="theme-color" content="#0c1324"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TrueTrend</title>
   <style>
-    :root{
-      --bg:#0b1221; --panel:#0f162b; --text:#eaf1ff; --muted:#a3b3d6;
-      --border:rgba(170,185,220,.16); --brand:#7c5cff; --brand-2:#5860ff;
-    }
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;background:
-        radial-gradient(1200px 700px at 80% -20%,rgba(124,92,255,.07),transparent 50%),
-        radial-gradient(900px 420px at 10% -10%,rgba(0,208,255,.06),transparent 60%),
-        var(--bg);
-      color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    .wrap{max-width:900px;margin:0 auto;padding:28px 18px 72px}
-    header{display:flex;align-items:center;gap:12px;padding:6px 0 18px;border-bottom:1px solid var(--border)}
-    .dot{width:12px;height:12px;border-radius:50%;background:conic-gradient(from 180deg,var(--brand),var(--brand-2));box-shadow:0 0 22px rgba(124,92,255,.4)}
-    h1{margin:.3rem 0 0.6rem;font-size:clamp(26px,4.4vw,36px)}
+    :root { --bg:#0b0f1a; --panel:#111526; --text:#e6eaff; --muted:#9aa4c9; --brand:#1a5cff; --line:#232846; }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,Segoe UI,Roboto,Arial}
+    .wrap{max-width:900px;margin:4rem auto;padding:2rem}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px}
+    h1{margin:0 0 .5rem 0;font-size:clamp(22px,4vw,32px)}
+    h2{margin:.5rem 0 1rem 0;font-size:clamp(18px,3vw,24px);color:var(--muted)}
+    p{margin:.4rem 0 .9rem 0}
+    a.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:700}
     .muted{color:var(--muted)}
-    h2{margin:1.6rem 0 .4rem;font-size:1.2rem}
-    p,li{color:#dbe4ff;line-height:1.7}
-    ul{padding-left:1.1rem}
-    code{background:#0f1833;border:1px solid var(--border);padding:2px 6px;border-radius:6px}
-    .back{display:inline-flex;gap:8px;align-items:center;margin-top:24px;color:#cfe0ff;text-decoration:none;border-bottom:1px dotted transparent}
-    .back:hover{border-bottom-color:#cfe0ff}
-    footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:.92rem}
-    a{color:#bcd0ff}
+    .sp{height:10px}
+    .center{text-align:center}
+    .hide{display:none}
+    .footer {margin-top:2rem;color:var(--muted);font-size:14px}
+    code{padding:.1rem .35rem;background:#0c1324;border-radius:6px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div class="dot" aria-hidden="true"></div>
-      <div><strong>TrueTrend</strong> <span class="muted">Privacy Policy</span></div>
-    </header>
 
-    <h1>Privacy Policy</h1>
-    <p class="muted">Effective date: <strong>September 2, 2025</strong></p>
+    <!-- LANDING (shown by default) -->
+    <section id="landing" class="card">
+      <h1>TrueTrend — Learn • Earn • Own</h1>
+      <h2 class="muted">Router-based trading assistant for clarity & consistency.</h2>
+      <p>Click the button below to purchase. After payment you’ll be redirected back here and your installer will download automatically.</p>
+      <!-- TODO: paste your real Stripe Payment Link URL below -->
+      <p class="sp"></p>
+      <a class="btn" id="pay" href="https://buy.stripe.com/your_payment_link_here" target="_blank" rel="noopener">Buy with Stripe</a>
+      <div class="footer">
+        <p>After payment redirect URL: <code>?thanks=1</code></p>
+        <p class="muted">If you need a health check, open <code>/health.txt</code> (optional).</p>
+      </div>
+    </section>
 
-    <p>TrueTrend (“we”, “us”, “our”) respects your privacy. This policy explains how we handle information on our website <strong>trytruetrend.com</strong> and within our Chrome extension (“Extension”). TrueTrend is an educational tool; it is not financial advice.</p>
+    <!-- THANK-YOU / DOWNLOAD (shown when ?thanks=1 or ?session_id=) -->
+    <section id="thanks" class="card hide">
+      <h1>✅ Thanks for your purchase!</h1>
+      <p>Your download should start automatically. If it doesn’t, click the button below.</p>
+      <p class="sp"></p>
+      <p><a class="btn" id="dl" href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip">Download now</a></p>
+      <p class="muted">Tip: if the browser blocks the download, allow it and click the button again.</p>
+      <div class="footer">Need help? Contact support@trytruetrend.com.</div>
+    </section>
 
-    <h2>What We Collect</h2>
-    <ul>
-      <li><strong>On the website:</strong> If you purchase via Stripe, Stripe collects and processes payment details (e.g., card data) on our behalf. We receive limited information such as your name, email, product, and transaction status.</li>
-      <li><strong>Support communications:</strong> If you email us, we receive your email address and message content.</li>
-      <li><strong>Cookies & logs:</strong> Our site may use strictly necessary cookies for basic functionality (e.g., remembering banner dismissal). Stripe may set cookies to operate checkout securely.</li>
-      <li><strong>Analytics (if enabled):</strong> We may use privacy-preserving, aggregated analytics (no cross-site tracking or selling). We will update this page if tooling changes.</li>
-    </ul>
-
-    <h2>Extension Data & Permissions</h2>
-    <p>The Extension is designed to run locally in your browser. By default, it does not transmit your page content to our servers.</p>
-    <ul>
-      <li><strong>activeTab / host permissions (if requested):</strong> Used to render overlays and read chart elements to enable features like router strategies and visual cues.</li>
-      <li><strong>storage:</strong> Used to save your local settings (e.g., strategy preferences, UI state). Data is kept in Chrome’s storage on your device unless you clear it.</li>
-      <li><strong>audio / speech (if you enable voice):</strong> The Extension may use browser-provided speech APIs to speak signals locally. We do not receive your audio.</li>
-      <li><strong>network requests (if present):</strong> The Extension may contact our endpoint to check license status or retrieve configuration/updates. We do not sell personal data.</li>
-    </ul>
-
-    <h2>How We Use Information</h2>
-    <ul>
-      <li>Provide and improve the site and Extension.</li>
-      <li>Process orders and deliver products.</li>
-      <li>Offer support and communicate about updates.</li>
-      <li>Protect against fraud, abuse, and misuse.</li>
-    </ul>
-
-    <h2>Sharing</h2>
-    <ul>
-      <li><strong>No selling of personal data.</strong></li>
-      <li><strong>Processors/Service providers:</strong> We share necessary data with vendors who help operate our services (e.g., Stripe for payments, hosting providers like Vercel). These providers are bound to protect your information.</li>
-      <li><strong>Legal:</strong> We may disclose information if required by law or to protect rights, safety, and integrity of our services.</li>
-    </ul>
-
-    <h2>Security</h2>
-    <p>We use reasonable safeguards including encryption in transit (HTTPS). No online system is perfectly secure; please use strong passwords and keep your browser up to date.</p>
-
-    <h2>Retention</h2>
-    <p>We retain information only as long as necessary for the purposes described above, to comply with legal obligations, or resolve disputes. You can request deletion of your support records or Stripe purchase metadata where applicable.</p>
-
-    <h2>Your Choices</h2>
-    <ul>
-      <li>You may disable cookies in your browser (site features may be limited).</li>
-      <li>You can remove the Extension at any time and clear its data via <code>chrome://settings/siteData</code> and Chrome’s <code>Clear browsing data</code>.</li>
-      <li>Contact us to access or delete your support records linked to your email.</li>
-    </ul>
-
-    <h2>Children</h2>
-    <p>TrueTrend is intended for adults. We do not knowingly collect data from individuals under 18.</p>
-
-    <h2>Changes</h2>
-    <p>We may update this policy from time to time. We will post the updated version here with a new effective date.</p>
-
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:support@trytruetrend.com">support@trytruetrend.com</a></p>
-
-    <a class="back" href="/">← Back to home</a>
-
-    <footer>© <span id="y"></span> TrueTrend. All rights reserved.</footer>
   </div>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+  <script>
+    // ===== CONFIG you can change =====
+    const DOWNLOAD_URL = "/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5.zip";
+    // ===== nothing below here needs changing =====
+
+    const params = new URLSearchParams(location.search);
+    const isThanks = params.has("thanks") || params.has("session_id");
+
+    const landing = document.getElementById("landing");
+    const thanks  = document.getElementById("thanks");
+    const dlBtn   = document.getElementById("dl");
+
+    dlBtn.href = DOWNLOAD_URL;
+
+    if (isThanks) {
+      landing.classList.add("hide");
+      thanks.classList.remove("hide");
+
+      // Auto-start the download with a tiny delay (gives the page time to paint)
+      setTimeout(() => {
+        try {
+          const a = document.createElement("a");
+          a.href = DOWNLOAD_URL;
+          a.download = "";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } catch(_) {
+          // ignore; user can click the visible button
+        }
+      }, 700);
+    }
+  </script>
 </body>
 </html>
