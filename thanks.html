@@ -1,17 +1,96 @@
 <!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thanks — your download will start…</title>
-<link rel="icon" href="data:,">
-<style>
-  body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:820px;margin:64px auto;padding:0 24px;color:#222}
-  a{color:#16a34a}
-</style>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You — TrueTrend</title>
+  <style>
+    :root {
+      --brand:#16a34a;
+      --ink:#222;
+      --muted:#666;
+      --bg:#fff;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    .wrap {
+      max-width:920px;
+      margin:48px auto;
+      padding:0 24px;
+    }
+    h1 { font-size:32px; margin:0 0 8px; }
+    p  { margin:0 0 16px; color:var(--muted); }
+    .card {
+      margin-top:28px;
+      border:1px solid #eee;
+      border-radius:16px;
+      padding:24px;
+      box-shadow:0 5px 18px rgba(16,24,40,.04);
+    }
+    .btn {
+      display:inline-block;
+      background:var(--brand);
+      color:#fff;
+      text-decoration:none;
+      padding:16px 22px;
+      border-radius:12px;
+      font-weight:600;
+      transition:filter .2s ease;
+    }
+    .btn:hover { filter:brightness(.95); }
+    .hint { font-size:14px; color:var(--muted); margin-top:12px; }
+    .steps h2 { font-size:22px; margin:28px 0 10px; }
+    ol { padding-left:20px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Thanks for your purchase! 🎉</h1>
+    <p>Your download will begin automatically. If it doesn’t, use the button below.</p>
 
-<h1>Thanks for your purchase!</h1>
-<p>Your download should start automatically. If it doesn’t, <a id="link" href="/releases/installer.zip">click here to download</a>.</p>
+    <section class="card" aria-labelledby="dl">
+      <h2 id="dl">Direct Download</h2>
 
-<script>
-  // start the download after a tiny delay to ensure the page loads
-  setTimeout(() => { window.location.href = '/releases/installer.zip'; }, 300);
-</script>
+      <!-- ONE BUTTON ONLY – CHROME EXTENSION ZIP -->
+      <a class="btn"
+         href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5%20%281%29.zip"
+         download>
+        Download Chrome Extension (.zip)
+      </a>
+
+      <div class="hint">
+        If the download is blocked, right-click the button and choose <em>Save link as…</em>
+      </div>
+    </section>
+
+    <section class="card steps" aria-labelledby="steps">
+      <h2 id="steps">Quick Install Steps</h2>
+      <ol>
+        <li>Extract the downloaded <strong>.zip</strong> to a folder.</li>
+        <li>Open <code>chrome://extensions</code> in Chrome.</li>
+        <li>Enable <strong>Developer mode</strong> (top right), click <strong>Load unpacked</strong>, and select the extracted folder.</li>
+        <li>Done! ✅</li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- Optional: auto-start the download on page load -->
+  <script>
+    (function() {
+      const url = "/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5%20%281%29.zip";
+      // Start the download automatically (fails silently if blocked by browser)
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      setTimeout(() => a.click(), 250);
+    })();
+  </script>
+</body>
+</html>
