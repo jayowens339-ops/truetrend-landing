@@ -5,92 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thank You — TrueTrend</title>
   <style>
-    :root {
-      --brand:#16a34a;
-      --ink:#222;
-      --muted:#666;
-      --bg:#fff;
-    }
+    :root { --brand:#16a34a; --ink:#222; --muted:#666; --bg:#fff; }
     * { box-sizing:border-box; }
     body {
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--ink);
-      background:var(--bg);
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-    .wrap {
-      max-width:920px;
-      margin:48px auto;
-      padding:0 24px;
-    }
-    h1 { font-size:32px; margin:0 0 8px; }
-    p  { margin:0 0 16px; color:var(--muted); }
+    .wrap { max-width: 860px; margin: 48px auto; padding: 0 24px; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    .muted { color: var(--muted); }
     .card {
-      margin-top:28px;
-      border:1px solid #eee;
-      border-radius:16px;
-      padding:24px;
+      border:1px solid #eee; border-radius:16px; padding:20px; margin-top:24px;
       box-shadow:0 5px 18px rgba(16,24,40,.04);
     }
+    .row { display:flex; flex-wrap:wrap; gap:16px; }
     .btn {
-      display:inline-block;
-      background:var(--brand);
-      color:#fff;
-      text-decoration:none;
-      padding:16px 22px;
-      border-radius:12px;
-      font-weight:600;
-      transition:filter .2s ease;
+      appearance:none; border:0; border-radius:10px; padding:14px 20px;
+      background:var(--brand); color:#fff; text-decoration:none; font-weight:600;
+      display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+      box-shadow:0 5px 14px rgba(22,163,74,.25);
     }
     .btn:hover { filter:brightness(.95); }
-    .hint { font-size:14px; color:var(--muted); margin-top:12px; }
-    .steps h2 { font-size:22px; margin:28px 0 10px; }
-    ol { padding-left:20px; }
+    .ok { color:var(--brand); font-weight:700; }
+    code { background:#f6f6f6; padding:2px 6px; border-radius:6px; }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <h1>Thanks for your purchase! 🎉</h1>
-    <p>Your download will begin automatically. If it doesn’t, use the button below.</p>
+  <div class="wrap">
+    <h1>Thanks for your purchase! <span class="ok">✔</span></h1>
+    <p class="muted">Your download will begin automatically. If it doesn’t, use the button below.</p>
 
-    <section class="card" aria-labelledby="dl">
-      <h2 id="dl">Direct Download</h2>
-
-      <!-- ONE BUTTON ONLY – CHROME EXTENSION ZIP -->
-      <a class="btn"
-         href="/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5%20%281%29.zip"
-         download>
-        Download Chrome Extension (.zip)
-      </a>
-
-      <div class="hint">
-        If the download is blocked, right-click the button and choose <em>Save link as…</em>
+    <div class="card">
+      <h2>Direct Download</h2>
+      <p class="muted">If the download is blocked, right-click and choose <em>Save link as…</em></p>
+      <div class="row">
+        <a id="downloadBtn" class="btn" href="#">
+          Download Chrome Extension (.zip)
+        </a>
       </div>
-    </section>
+    </div>
 
-    <section class="card steps" aria-labelledby="steps">
-      <h2 id="steps">Quick Install Steps</h2>
-      <ol>
-        <li>Extract the downloaded <strong>.zip</strong> to a folder.</li>
+    <div class="card">
+      <h3>Quick Install Steps</h3>
+      <ol class="muted">
+        <li>Download the ZIP and extract it.</li>
         <li>Open <code>chrome://extensions</code> in Chrome.</li>
-        <li>Enable <strong>Developer mode</strong> (top right), click <strong>Load unpacked</strong>, and select the extracted folder.</li>
-        <li>Done! ✅</li>
+        <li>Enable <strong>Developer mode</strong>.</li>
+        <li>Click <strong>Load unpacked</strong> and select the extracted extension folder.</li>
+        <li>Done! <span class="ok">✔</span></li>
       </ol>
-    </section>
-  </main>
+    </div>
+  </div>
 
-  <!-- Optional: auto-start the download on page load -->
   <script>
-    (function() {
-      const url = "/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5%20%281%29.zip";
-      // Start the download automatically (fails silently if blocked by browser)
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = '';
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      setTimeout(() => a.click(), 250);
-    })();
+    /**
+     * IMPORTANT — update this path if your filename or folder differs.
+     * After you commit the ZIP to the repo (e.g. /releases/yourfile.zip),
+     * this becomes available at https://www.trytruetrend.com/releas.../yourfile.zip
+     */
+    const ZIP_PATH  = '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5_with_QuickStart.zip';
+    const FILE_NAME = 'TrueTrend_Chrome_Extension.zip';
+
+    // Wire the visible button
+    const btn = document.getElementById('downloadBtn');
+    btn.href = ZIP_PATH;
+    btn.setAttribute('download', FILE_NAME);
+
+    // Auto-start the download shortly after load (helps with popup blockers)
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const a = document.createElement('a');
+        a.href = ZIP_PATH + '?t=' + Date.now(); // cache-bust
+        a.download = FILE_NAME;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 500);
+      }, 400);
+    });
   </script>
 </body>
 </html>
