@@ -7,24 +7,18 @@
   <style>
     :root { --brand:#16a34a; --ink:#222; --muted:#666; --bg:#fff; }
     * { box-sizing:border-box; }
-    body {
-      margin:0; background:var(--bg); color:var(--ink);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-    .wrap { max-width: 860px; margin: 48px auto; padding: 0 24px; }
-    h1 { font-size: 28px; margin: 0 0 8px; }
-    .muted { color: var(--muted); }
-    .card {
-      border:1px solid #eee; border-radius:16px; padding:20px; margin-top:24px;
-      box-shadow:0 5px 18px rgba(16,24,40,.04);
-    }
+    body { margin:0; background:var(--bg); color:var(--ink);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    .wrap { max-width:860px; margin:48px auto; padding:0 24px; }
+    h1 { font-size:28px; margin:0 0 8px; }
+    .muted { color:var(--muted); }
+    .card { border:1px solid #eee; border-radius:16px; padding:20px; margin-top:24px;
+      box-shadow:0 5px 18px rgba(16,24,40,.04); }
     .row { display:flex; flex-wrap:wrap; gap:16px; }
-    .btn {
-      appearance:none; border:0; border-radius:10px; padding:14px 20px;
+    .btn { appearance:none; border:0; border-radius:10px; padding:14px 20px;
       background:var(--brand); color:#fff; text-decoration:none; font-weight:600;
       display:inline-flex; align-items:center; gap:10px; cursor:pointer;
-      box-shadow:0 5px 14px rgba(22,163,74,.25);
-    }
+      box-shadow:0 5px 14px rgba(22,163,74,.25); }
     .btn:hover { filter:brightness(.95); }
     .ok { color:var(--brand); font-weight:700; }
     code { background:#f6f6f6; padding:2px 6px; border-radius:6px; }
@@ -43,7 +37,9 @@
       <div class="row">
         <a id="downloadBtn" class="btn" href="#">Download Chrome Extension (.zip)</a>
       </div>
-      <p id="errorMsg" class="error hide">We couldn’t find the file in this deployment. Please refresh in 10–15 seconds, or contact support if this persists.</p>
+      <p id="errorMsg" class="error hide">
+        We couldn’t find the file in this deployment. Please refresh in 10–15 seconds, or contact support if this persists.
+      </p>
     </div>
 
     <div class="card">
@@ -59,27 +55,23 @@
   </div>
 
   <script>
-    // Try these, in order. Keep only the ones you actually use, or rename to a simple one.
-    const CANDIDATES = [
-      '/releases/truetrend-extension.zip',
-      '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5_with_QuickStart.zip',
-      '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5 (1).zip',
-    ].map(u => encodeURI(u));
+    // === CHANGE THIS to match where you put the file ===
+    // Option A (file under /public/releases):
+    // const FILE_URL = '/public/releases/TrueTrend_Chrome_Extension.zip';
+
+    // Option B (file under /releases):
+    const FILE_URL = '/releases/TrueTrend_Chrome_Extension.zip';
 
     const FILE_NAME = 'TrueTrend_Chrome_Extension.zip';
     const btn = document.getElementById('downloadBtn');
     const errorMsg = document.getElementById('errorMsg');
 
-    async function findAvailable(urls) {
-      for (const url of urls) {
-        try {
-          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-          if (res.ok) return url;
-        } catch (_) {}
-      }
-      return null;
+    async function exists(url) {
+      try {
+        const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        return res.ok;
+      } catch (_) { return false; }
     }
-
     function triggerDownload(url) {
       btn.href = url;
       btn.download = FILE_NAME;
@@ -92,11 +84,10 @@
     }
 
     (async () => {
-      const url = await findAvailable(CANDIDATES);
-      if (url) {
-        btn.href = url;
+      if (await exists(FILE_URL)) {
+        btn.href = FILE_URL;
         btn.download = FILE_NAME;
-        setTimeout(() => triggerDownload(url), 400);
+        setTimeout(() => triggerDownload(FILE_URL), 400);
       } else {
         errorMsg.classList.remove('hide');
         btn.href = '#';
