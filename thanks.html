@@ -28,6 +28,8 @@
     .btn:hover { filter:brightness(.95); }
     .ok { color:var(--brand); font-weight:700; }
     code { background:#f6f6f6; padding:2px 6px; border-radius:6px; }
+    .error { color:#b91c1c; font-weight:600; }
+    .hide { display:none; }
   </style>
 </head>
 <body>
@@ -37,12 +39,11 @@
 
     <div class="card">
       <h2>Direct Download</h2>
-      <p class="muted">If the download is blocked, right-click and choose <em>Save link as…</em></p>
+      <p class="muted">If the download is blocked, right-click the button and choose <em>Save link as…</em></p>
       <div class="row">
-        <a id="downloadBtn" class="btn" href="#">
-          Download Chrome Extension (.zip)
-        </a>
+        <a id="downloadBtn" class="btn" href="#">Download Chrome Extension (.zip)</a>
       </div>
+      <p id="errorMsg" class="error hide">We couldn’t find the file in this deployment. Please refresh in 10–15 seconds, or contact support if this persists.</p>
     </div>
 
     <div class="card">
@@ -58,30 +59,49 @@
   </div>
 
   <script>
-    /**
-     * IMPORTANT — update this path if your filename or folder differs.
-     * After you commit the ZIP to the repo (e.g. /releases/yourfile.zip),
-     * this becomes available at https://www.trytruetrend.com/releas.../yourfile.zip
-     */
-    const ZIP_PATH  = '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5_with_QuickStart.zip';
+    // Try these, in order. Keep only the ones you actually use, or rename to a simple one.
+    const CANDIDATES = [
+      '/releases/truetrend-extension.zip',
+      '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5_with_QuickStart.zip',
+      '/releases/TrueTrend_Universal_Chrome_Extension_v4.3.3.5 (1).zip',
+    ].map(u => encodeURI(u));
+
     const FILE_NAME = 'TrueTrend_Chrome_Extension.zip';
-
-    // Wire the visible button
     const btn = document.getElementById('downloadBtn');
-    btn.href = ZIP_PATH;
-    btn.setAttribute('download', FILE_NAME);
+    const errorMsg = document.getElementById('errorMsg');
 
-    // Auto-start the download shortly after load (helps with popup blockers)
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const a = document.createElement('a');
-        a.href = ZIP_PATH + '?t=' + Date.now(); // cache-bust
-        a.download = FILE_NAME;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => a.remove(), 500);
-      }, 400);
-    });
+    async function findAvailable(urls) {
+      for (const url of urls) {
+        try {
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (res.ok) return url;
+        } catch (_) {}
+      }
+      return null;
+    }
+
+    function triggerDownload(url) {
+      btn.href = url;
+      btn.download = FILE_NAME;
+      const a = document.createElement('a');
+      a.href = url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
+      a.download = FILE_NAME;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => a.remove(), 400);
+    }
+
+    (async () => {
+      const url = await findAvailable(CANDIDATES);
+      if (url) {
+        btn.href = url;
+        btn.download = FILE_NAME;
+        setTimeout(() => triggerDownload(url), 400);
+      } else {
+        errorMsg.classList.remove('hide');
+        btn.href = '#';
+      }
+    })();
   </script>
 </body>
 </html>
